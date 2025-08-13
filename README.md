@@ -1,17 +1,17 @@
-# ROS on Mac/Windows
+# ROS on Mac/Windows/Ubuntu
 
-Before following the next two steps, install Docker ([installation instructions for Mac](https://docs.docker.com/docker-for-mac/install/) or [for Windows](https://docs.docker.com/docker-for-windows/install/#system-requirements-for-wsl-2-backend)).
+Before following the next two steps, install Docker ([installation instructions for Mac](https://docs.docker.com/docker-for-mac/install/) or [for Windows](https://docs.docker.com/docker-for-windows/install/#system-requirements-for-wsl-2-backend) or [for Ubuntu](https://docs.docker.com/engine/install/ubuntu/)).
 
 ## 1. Setup
 Open a new terminal in the Mac or PowerShell in Windows.
-1. Once the terminal is open, clone this repository with the command `git clone https://github.com/quattrinili/vnc-ros`
+1. Once the terminal is open, clone this repository with the command `git clone https://github.com/bing-marine-robotics-lab/vnc-ros.git`
 2. Enter in the cloned repository folder, `cd vnc-ros`
 3. Create a folder called `workspace` with the command `mkdir workspace`
-4. Run `docker compose up`
+4. Run `docker compose up --build`
 
 (`ros.env` contains environment variables for ROS that can be modified before running the command in step 3.)
 
-## 2. Running a ROS gazebo simulation for testing
+## 2. Running a the container
 Once the other terminal shows the following type of messages and remains running without errors
 
      ⠿ Container vnc-ros-ros-1    Cr...                           0.0s
@@ -25,18 +25,18 @@ Once the other terminal shows the following type of messages and remains running
 
 To see whether it was successful, in running the simulation
 1. Open your browser to `localhost:8080/vnc.html` and click connect.
-2. The robotic simulator is now running in your browser.
 
-open another terminal:
+Open another terminal:
 3. Run `docker compose exec ros bash` (`docker compose up` has to be running)
-4. Run `source /opt/ros/humble/setup.bash`
-5. Run `ros2 run teleop_twist_keyboard teleop_twist_keyboard` and you should see a some terminal output indicating how to use the keyboard to teleoperate the robot. You can see the robot 
+4. Run `source /opt/ros/jazzy/setup.bash`
 
-
+IMPORTANT: Check if `dv-ros2` was built successfully. In `/root/research/inivation_ws` if there is no `install` folder, then:
+1. Run `colcon build`
+2. Run `source ~\.bashrc`
 
 ## 3. To terminate
 
-In the terminal open for step 3., press ctrl+c, which will stop the execution of the teleoperation. Once that is stopped -- you should see it as the terminal can accept commands -- press ctrl+d to exit the Docker container.
+In the terminal open for step 3., press ctrl+d (or type exit) to exit the Docker container.
 
 Afterwards, in the terminal open for step 1., press ctrl+c. Once terminated, you should see the following messages
 
@@ -44,6 +44,8 @@ Afterwards, in the terminal open for step 1., press ctrl+c. Once terminated, you
     Stopping mac-ros_novnc_1 ... done
 
 At this point, both terminals can be closed if you wish.
+
+Note: sometimes it fails to stop. For now, recommend to restart your system.
 
 ## Editing your workspace
 The `workspace` folder created on your machine by `docker compose` is where you can write and edit your packages. That folder maps to `~/catkin_ws` on the Docker container and is shared between the host machine and the Docker container. 
