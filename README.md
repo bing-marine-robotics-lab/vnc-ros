@@ -30,6 +30,11 @@ Open another terminal:
 1. Run `docker compose exec ros bash` (`docker compose up` has to be running)
 2. Run `source /opt/ros/jazzy/setup.bash`
 
+Check if `dv-ros2` succesfully built:
+1. Go into `/root/research/inivation_ws`
+2. If `install` folder is there, then you are good. If not, got step 3.
+3. Run `colcon build`
+
 ## 3. To terminate
 
 In the terminal open for step 3., press ctrl+d (or type exit) to exit the Docker container.
