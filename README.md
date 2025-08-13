@@ -27,12 +27,12 @@ To see whether it was successful, in running the simulation
 1. Open your browser to `localhost:8080/vnc.html` and click connect.
 
 Open another terminal:
-3. Run `docker compose exec ros bash` (`docker compose up` has to be running)
-4. Run `source /opt/ros/jazzy/setup.bash`
+2. Run `docker compose exec ros bash` (`docker compose up` has to be running)
+3. Run `source /opt/ros/jazzy/setup.bash`
 
 IMPORTANT: Check if `dv-ros2` was built successfully. In `/root/research/inivation_ws` if there is no `install` folder, then:
-1. Run `colcon build`
-2. Run `source ~\.bashrc`
+4. Run `colcon build`
+5. Run `source ~\.bashrc`
 
 ## 3. To terminate
 
